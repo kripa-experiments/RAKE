@@ -133,12 +133,14 @@ class Rake(object):
 
         keyword_candidates = generate_candidate_keyword_scores(phrase_list, word_scores)
 
-        sorted_keywords = sorted(keyword_candidates.iteritems(), key=operator.itemgetter(1), reverse=True)
+        sorted_keywords = sorted(iter(keyword_candidates.items()), key=operator.itemgetter(1), reverse=True)
         return sorted_keywords
 
 
 if test:
-    text = "Compatibility of systems of linear constraints over the set of natural numbers. Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given. These criteria and the corresponding algorithms for constructing a minimal supporting set of solutions can be used in solving all the considered types of systems and systems of mixed types."
+    #text = "Compatibility of systems of linear constraints over the set of natural numbers. Criteria of compatibility of a system of linear Diophantine equations, strict inequations, and nonstrict inequations are considered. Upper bounds for components of a minimal set of solutions and algorithms of construction of minimal generating sets of solutions for all types of systems are given. These criteria and the corresponding algorithms for constructing a minimal supporting set of solutions can be used in solving all the considered types of systems and systems of mixed types."
+    #text = "Ariane Just thinking out loud on this one could we use the layout phase option"
+    text = "Hi Amanda, The following PDF s are approved: MG 29788 B VITACRESS RUCULA SELVAGEM 100 G MG 29790 B VITACRESS AGRI O DE AGUA 125G MG 29791 B VITACRESS AGRI O DE AGUA 50G Please output the colour proof of each and send to us. Please, please be careful and attention the simulation of the White and Transparent areas. The last proofs of this customer had error on this. Thank you very much Best Regards, Sandra Rodrigues Prepress Technician Amcor Flexibles Palmela Quinta da Marquesa IV, Quinta do Anjo, 2950 677 Palmela T 351210124038 www.amcor.com Amcor Creating a new world of packaging CAUTION This message may contain privileged and confidential information intended only for the use of the addressee named above. If you are not the intended recipient of this message you are hereby notified that any use, dissemination, distribution or reproduction of this message is prohibited. If you have received this message in error please notify Amcor immediately. Any views expressed in this message are those of the individual sender and may not necessarily reflect the views of Amcor."
 
     # Split text into sentences
     sentenceList = split_sentences(text)
@@ -154,15 +156,15 @@ if test:
 
     # generate candidate keyword scores
     keywordcandidates = generate_candidate_keyword_scores(phraseList, wordscores)
-    if debug: print keywordcandidates
+    if debug: print(keywordcandidates)
 
-    sortedKeywords = sorted(keywordcandidates.iteritems(), key=operator.itemgetter(1), reverse=True)
-    if debug: print sortedKeywords
+    sortedKeywords = sorted(iter(keywordcandidates.items()), key=operator.itemgetter(1), reverse=True)
+    if debug: print(sortedKeywords)
 
     totalKeywords = len(sortedKeywords)
-    if debug: print totalKeywords
-    print sortedKeywords[0:(totalKeywords / 3)]
+    if debug: print(totalKeywords)
+    #print(sortedKeywords[0:int(totalKeywords / 3)])
 
     rake = Rake("SmartStoplist.txt")
     keywords = rake.run(text)
-    print keywords
+    print(keywords[:3])
